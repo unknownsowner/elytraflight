@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gamePage>
+  <content><![CDATA[
+   <!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=yes"/>
+  <title>Obby</title>
+
+  <!-- Placeholder favicon -->
+  <link rel="shortcut icon" href="https://via.placeholder.com/32"/>
+
+  <!-- External stylesheet (still needed for Unity layout) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/papamamia/sers@main/TemplateData/style.css"/>
+
+  <!-- Override visuals with placeholders -->
+  <style>
+    body {
+      background-image: url('https://via.placeholder.com/1920x1080') !important;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    #unity-logo {
+      background-image: url('https://via.placeholder.com/200x100') !important;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #unity-progress-bar-empty {
+      background-color: #333 !important;
+    }
+
+    #unity-progress-bar-full {
+      background-color: #00ccff !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Unity canvas and loading bar -->
+  <div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unity loader script -->
+  <script src="https://cdn.jsdelivr.net/gh/papamamia/sers@main/unityApp.js"></script>
+
+  <!-- Blur focus blocker -->
+  <script>
+    if (!window.blurFocusHandlersInstalled) {
+      window.addEventListener('blur', function () {
+        let blockerButton = document.createElement('button');
+        blockerButton.style.position = 'fixed';
+        blockerButton.style.top = '0';
+        blockerButton.style.left = '0';
+        blockerButton.style.width = '100%';
+        blockerButton.style.height = '100%';
+        blockerButton.style.zIndex = '9999';
+        blockerButton.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+        blockerButton.style.border = 'none';
+        blockerButton.style.cursor = 'default';
+        document.body.appendChild(blockerButton);
+        function removeBlocker() {
+          if (blockerButton && blockerButton.parentNode) {
+            blockerButton.parentNode.removeChild(blockerButton);
+          }
+          window.removeEventListener('focus', removeBlocker);
+        }
+        window.addEventListener('focus', removeBlocker);
+      });
+      window.blurFocusHandlersInstalled = true;
+    }
+  </script>
+</body>
+</html>
+
+  ]]></content>
+</gamePage>
